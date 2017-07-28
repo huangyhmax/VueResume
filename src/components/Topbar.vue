@@ -4,7 +4,7 @@
 <style>
   #topbar{
     border:1px solid black;
-    min-height:20px;
+    min-height:80px;
   }
 </style>
 
