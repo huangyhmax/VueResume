@@ -31,6 +31,12 @@ html,body,#app{height:100%;overflow: hidden;}
   display:flex;
   flex-direction: column;*/
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 .topbar{
   // >.actions{
   // font-weight: bold;
@@ -52,6 +58,7 @@ main{
     background-color:#fff;
     box-shadow:0 0 3px hsla(0, 0, 0, 0.3);
     border-radius: 4px;
+    overflow: hidden;
   }
   >.preview{
     flex: 1;
@@ -59,6 +66,7 @@ main{
     background-color:#fff;
     box-shadow:0 0 3px hsla(0, 0, 0, 0.3);
     border-radius: 4px;
+    overflow: hidden;
   }
 }
 
