@@ -32,10 +32,11 @@ html,body,#app{height:100%;overflow: hidden;}
   flex-direction: column;*/
 }
 .topbar{
-
+  >.actions{
+  font-weight: bold;
+  }
 }
 main{
-
   display: flex;
   height: 100%;
   /*对应配套vh的写使用
