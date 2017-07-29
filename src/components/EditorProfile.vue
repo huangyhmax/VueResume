@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>个人信息</h2>
+    <h2>{{title}}</h2>
     <el-form :label-position="labelPosition" label-width="80px" :model="profile" class="profile">
       <el-form-item label="姓名">
         <el-input v-model="profile.name"></el-input>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props:['labelPosition','profile']
+  props:['labelPosition','profile','title'],
 }
 </script>
 
