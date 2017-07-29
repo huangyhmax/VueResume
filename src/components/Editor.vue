@@ -2,43 +2,40 @@
   <div id="editor">
     <nav>
       <ol>
-        <li class="active">
-          <svg class="icon">
-              <use xlink:href="#icon-identity"></use>
-          </svg>
+        <li v-for="i in items" :key="i.id"
+            v-bind:class = "{active:currentTab === i}"
+            v-on:click="currentTab = i">
+            <svg class="icon">
+              <use :xlink:href="`#icon-${icons[i]}`"></use>
+            </svg>
         </li>
-        <li>
-          <svg class="icon">
-              <use xlink:href="#icon-education"></use>
-          </svg>
-        </li>
-        <li>
-          <svg class="icon">
-              <use xlink:href="#icon-work"></use>
-          </svg>
-        </li>
-        <li>
-          <svg class="icon">
-              <use xlink:href="#icon-project"></use>
-          </svg>
-        </li>
-        <li>
-          <svg class="icon">
-              <use xlink:href="#icon-award"></use>
-          </svg>
-        </li>
-        <li>
+        <!--<li v-bind:class="{active:currentTab===5}" v-on:click="currentTab=5">
           <svg class="icon">
               <use xlink:href="#icon-phone"></use>
           </svg>
-        </li>
+        </li>-->
       </ol>
     </nav>
     <ol class="panes">
-
+      <li v-for="i in items" :key="i.id" v-bind:class="{hover:currentTab===i}">
+          标签{{i}}
+      </li>
     </ol>
   </div>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      currentTab:0,
+      items:[0,1,2,3,4,5],
+      icons:['identity','education','work','project','award','phone']
+    }
+  }
+}
+</script>
+
+
 <style lang="scss">
   #editor{
     /*border:1px solid red;*/
@@ -63,7 +60,12 @@
         }
       }
     }
-
+    >.panes>li{
+      display: none;
+      &.hover{
+        display: block;
+      }
+    }
   }
 
 
