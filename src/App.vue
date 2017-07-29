@@ -1,10 +1,13 @@
 <template>
-  <div id="app">
-    <Topbar class="topbar"/>
+  <div id="app" v-bind:class="{exitcontrol:previewMode}">
+    <Topbar class="topbar" v-on:preview="preview"/>
     <main>
       <Editor v-bind:resume="resume" class="editor"/>
       <Preview v-bind:resume="resume" class="preview"/>
     </main>
+    <el-button type="primary" id="exit" v-on:click="exitpreview">退出预览</el-button>
+    <!--这里切换预览和退出时候，css使用transition,看vue的文档-->
+    <!--还差路由-->
   </div>
 </template>
 
@@ -14,36 +17,30 @@ import Editor from './components/Editor'
 import Preview from './components/Preview'
 export default {
   name: 'app',
-  components: {
-    Topbar,Editor,Preview
-  },
   data(){
     return{
+      previewMode:false,
       resume:{
         labelPosition: 'top',
-        profile: {
-          name: '',
-          city:'',
-          birth: '',
-          age: ''
-        },
-        wordexperience:[{
-          company:'',experience:'',time:'',xxx:''
-        }],
-        education:[{
-          school:'',timeline:'',degree:''
-        }],
-        project:[{
-          content:''
-        }],
-        awards:[{
-          awardname:'',awardtime:''
-        }],
-        contact:{
-          phone:'',email:'',webchat:'',github:'',address:''
-        }
+        profile: {name: '',city:'',birth: '',age: ''},
+        wordexperience:[{company:'',experience:'',time:'',xxx:''}],
+        education:[{school:'',timeline:'',degree:''}],
+        project:[{content:''}],
+        awards:[{awardname:'',awardtime:''}],
+        contact:{phone:'',email:'',webchat:'',github:'',address:''}
       }
     }
+  },
+  methods:{
+    preview(){
+      this.previewMode=true
+    },
+    exitpreview(){
+      this.previewMode=false
+    }
+  },
+  components: {
+    Topbar,Editor,Preview
   }
 }
 </script>
@@ -58,6 +55,27 @@ html,body,#app{height:100%;overflow: hidden;}
   height:100vh;
   display:flex;
   flex-direction: column;*/
+}
+#exit{
+  display: none;
+}
+.exitcontrol{
+  #topbar{  //注意这里生成到html里，topbar是有id的，权重比较高，所以会盖住.topbar的设置
+    display: none;
+  }
+  #editor{
+    display: none;
+  }
+  #preview{
+  max-width:800px;
+  margin: 32px auto 0px auto;
+  }
+  #exit{
+    display: inline-block;
+    position:fixed;
+    right: 16px;
+    bottom: 8px;
+  }
 }
 .icon {
     width: 1em; height: 1em;

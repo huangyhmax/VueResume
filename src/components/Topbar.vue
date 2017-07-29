@@ -7,10 +7,23 @@
      <div class="actions">
         <el-button :plain="true">注册</el-button>
         <el-button type="primary">登录</el-button>
-        <el-button type="success">预览</el-button>
+        <el-button type="success" v-on:click="preview">预览</el-button>
      </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods:{
+    preview(){
+      // alert(1)
+      this.$emit('preview')  //触发preview事件,然后在其父组件App.vue中监听,注意加单引号
+    }
+  }
+}
+</script>
+
+
 <style lang="scss">
   #topbar{
     display:flex;
