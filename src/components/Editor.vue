@@ -21,23 +21,23 @@
           标签{{i}}
       </li>-->
       <li v-bind:class="{hover:currentTab===0}">
-        <EditorProfile title="个人信息" v-bind:profile="profile" v-bind:labelPosition="labelPosition"/>
+        <EditorProfile title="个人信息" v-bind:profile="resume.profile" v-bind:labelPosition="resume.labelPosition"/>
       </li>
       <li v-bind:class="{hover:currentTab===1}">
-        <ArrayEditor v-bind:items="wordexperience" title="工作经历" v-bind:label="{company:'公司',experience:'工作内容',time:'历时',xxx:'待补充'}"/>
+        <ArrayEditor v-bind:items="resume.wordexperience" title="工作经历" v-bind:label="{company:'公司',experience:'工作内容',time:'历时',xxx:'待补充'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===2}">
         <!--<EditorEducation v-bind:items="education"/>-->
-        <ArrayEditor v-bind:items="education" title="教育经历" v-bind:label="{school:'学校',timeline:'时间段',degree:'学位'}"/>
+        <ArrayEditor v-bind:items="resume.education" title="教育经历" v-bind:label="{school:'学校',timeline:'时间段',degree:'学位'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===3}">
-        <ArrayEditor v-bind:items="project" title="项目经历" v-bind:label="{content:'项目内容'}"/>
+        <ArrayEditor v-bind:items="resume.project" title="项目经历" v-bind:label="{content:'项目内容'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===4}">
-        <ArrayEditor v-bind:items="awards" title="获奖经历" v-bind:label="{awardname:'奖项',awardtime:'获奖时间'}"/>
+        <ArrayEditor v-bind:items="resume.awards" title="获奖经历" v-bind:label="{awardname:'奖项',awardtime:'获奖时间'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===5}">
-        <EditorContact title="联系方式" v-bind:contact="contact" v-bind:labelPosition="labelPosition"/>
+        <EditorContact title="联系方式" v-bind:contact="resume.contact" v-bind:labelPosition="resume.labelPosition"/>
       </li>
     </ol>
   </div>
@@ -51,32 +51,34 @@ export default {
   components:{
     EditorProfile,ArrayEditor,EditorContact
   },
+  props:['resume'],
   data(){
     return{
       currentTab:0,
       items:[0,1,2,3,4,5],
       icons:['identity','work','education','project','award','phone'],
-      labelPosition: 'top',
-      profile: {
-        name: '',
-        birth: '',
-        age: ''
-      },
-      wordexperience:[{
-        company:'',experience:'',time:'',xxx:''
-      }],
-      education:[{
-        school:'',timeline:'',degree:''
-      }],
-      project:[{
-        content:''
-      }],
-      awards:[{
-        awardname:'',awardtime:''
-      }],
-      contact:{
-        phone:'',email:'',webchat:'',github:'',address:''
-      }
+      // labelPosition: 'top',
+      // profile: {
+      //   name: '',
+      //   city:'',
+      //   birth: '',
+      //   age: ''
+      // },
+      // wordexperience:[{
+      //   company:'',experience:'',time:'',xxx:''
+      // }],
+      // education:[{
+      //   school:'',timeline:'',degree:''
+      // }],
+      // project:[{
+      //   content:''
+      // }],
+      // awards:[{
+      //   awardname:'',awardtime:''
+      // }],
+      // contact:{
+      //   phone:'',email:'',webchat:'',github:'',address:''
+      // }
     }
   },
   methods:{

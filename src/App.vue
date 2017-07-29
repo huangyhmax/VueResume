@@ -2,8 +2,8 @@
   <div id="app">
     <Topbar class="topbar"/>
     <main>
-      <Editor class="editor"/>
-      <Preview class="preview"/>
+      <Editor v-bind:resume="resume" class="editor"/>
+      <Preview v-bind:resume="resume" class="preview"/>
     </main>
   </div>
 </template>
@@ -16,6 +16,34 @@ export default {
   name: 'app',
   components: {
     Topbar,Editor,Preview
+  },
+  data(){
+    return{
+      resume:{
+        labelPosition: 'top',
+        profile: {
+          name: '',
+          city:'',
+          birth: '',
+          age: ''
+        },
+        wordexperience:[{
+          company:'',experience:'',time:'',xxx:''
+        }],
+        education:[{
+          school:'',timeline:'',degree:''
+        }],
+        project:[{
+          content:''
+        }],
+        awards:[{
+          awardname:'',awardtime:''
+        }],
+        contact:{
+          phone:'',email:'',webchat:'',github:'',address:''
+        }
+      }
+    }
   }
 }
 </script>
