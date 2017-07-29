@@ -21,22 +21,22 @@
           标签{{i}}
       </li>-->
       <li v-bind:class="{hover:currentTab===0}">
-        <!--<h2>个人信息</h2>
-        <el-form :label-position="labelPosition" label-width="80px" :model="profile" class="profile">
-          <el-form-item label="姓名">
-            <el-input v-model="profile.name"></el-input>
-          </el-form-item>
-          <el-form-item label="出生年月">
-            <el-input v-model="profile.birth"></el-input>
-          </el-form-item>
-          <el-form-item label="年龄">
-            <el-input v-model="profile.age"></el-input>
-          </el-form-item>
-        </el-form>-->
         <EditorProfile v-bind:profile="profile"/>
       </li>
       <li v-bind:class="{hover:currentTab===1}">
-        <EditorWork v-bind:wordexperience="wordexperience"/>
+        <EditorWork v-bind:items="wordexperience"/>
+      </li>
+      <li v-bind:class="{hover:currentTab===2}">
+        <EditorEducation v-bind:items="education"/>
+      </li>
+      <li v-bind:class="{hover:currentTab===3}">
+        标签4
+      </li>
+      <li v-bind:class="{hover:currentTab===4}">
+        标签5
+      </li>
+      <li v-bind:class="{hover:currentTab===5}">
+        标签6
       </li>
     </ol>
   </div>
@@ -44,9 +44,10 @@
 <script>
 import EditorProfile from './EditorProfile'
 import EditorWork from './EditorWork'
+import EditorEducation from './EditorEducation'
 export default {
   components:{
-    EditorProfile,EditorWork
+    EditorProfile,EditorWork,EditorEducation
   },
   data(){
     return{
@@ -61,6 +62,9 @@ export default {
       },
       wordexperience:[{
         company:'',experience:'',time:''
+      }],
+      education:[{
+        school:'',timeline:'',degree:''
       }]
     }
   },
