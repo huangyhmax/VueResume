@@ -21,7 +21,7 @@
           标签{{i}}
       </li>-->
       <li v-bind:class="{hover:currentTab===0}">
-        <h2>个人信息</h2>
+        <!--<h2>个人信息</h2>
         <el-form :label-position="labelPosition" label-width="80px" :model="profile" class="profile">
           <el-form-item label="姓名">
             <el-input v-model="profile.name"></el-input>
@@ -32,33 +32,22 @@
           <el-form-item label="年龄">
             <el-input v-model="profile.age"></el-input>
           </el-form-item>
-        </el-form>
+        </el-form>-->
+        <EditorProfile v-bind:profile="profile"/>
       </li>
       <li v-bind:class="{hover:currentTab===1}">
-        <h2>工作经历</h2>
-        <el-form>
-          <div class="workblock" v-for="(item,index) in wordexperience" :key="item.id" >
-            <hr>
-            <!--<el-button type="primary" icon="delete" v-on:click="removeWordexperience(index)" class="delete"></el-button>-->
-            <i class="el-icon-delete" v-on:click="removeWordexperience(index)"></i>
-            <el-form-item label="公司">
-              <el-input v-model="item.company"></el-input>
-            </el-form-item>
-            <el-form-item label="工作内容">
-              <el-input v-model="item.experience"></el-input>
-            </el-form-item>
-            <el-form-item label="历时">
-              <el-input v-model="item.time"></el-input>
-            </el-form-item>
-            <el-button type="primary" v-on:click="addWordexperience()">添加</el-button>
-          </div>
-        </el-form>
+        <EditorWork v-bind:wordexperience="wordexperience"/>
       </li>
     </ol>
   </div>
 </template>
 <script>
+import EditorProfile from './EditorProfile'
+import EditorWork from './EditorWork'
 export default {
+  components:{
+    EditorProfile,EditorWork
+  },
   data(){
     return{
       currentTab:0,
@@ -79,14 +68,7 @@ export default {
     // onSubmit(){
     //   console.log(this.profile) //初始化profile就会默认有get和set，哈哈，听不懂，这里再查资料
     // }
-    addWordexperience(){
-      this.wordexperience.push({
-        company:'',experience:'',time:''
-      })
-    },
-    removeWordexperience(index){
-      this.wordexperience.splice(index,1)
-    }
+
   },
   created(){  //主键被创办之后的回调
   // setTimeout(()=>{
@@ -124,14 +106,15 @@ export default {
     >.panes{
         flex: 1;
       .workblock{
-        display: relative;
+        position: relative;
         .el-icon-delete{
           font-size: 24px;
           color:#58B7FF;
           cursor: pointer;
-          display: absolute;
+          position: absolute;
           top: 0;
           right: 0;
+          z-index: 1;
         }
       }
       >li{
