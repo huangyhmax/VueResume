@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props:['profile']
+  props:['labelPosition','profile']
 }
 </script>
 
