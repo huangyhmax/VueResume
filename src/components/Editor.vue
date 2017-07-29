@@ -24,7 +24,7 @@
         <EditorProfile v-bind:profile="profile"/>
       </li>
       <li v-bind:class="{hover:currentTab===1}">
-        <EditorWork v-bind:items="wordexperience"/>
+        <EditorWork v-bind:items="wordexperience" v-bind:label="{company:'公司',experience:'工作内容',time:'历时',xxx:'待补充'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===2}">
         <EditorEducation v-bind:items="education"/>
@@ -61,7 +61,7 @@ export default {
         age: ''
       },
       wordexperience:[{
-        company:'',experience:'',time:''
+        company:'',experience:'',time:'',xxx:''
       }],
       education:[{
         school:'',timeline:'',degree:''

@@ -1,20 +1,21 @@
 <template>
   <div>
     <h2>工作经历</h2>
+    <!--{{keys}}-->
       <el-form>
         <div class="workblock" v-for="(item,index) in items" :key="item.id" >
           <hr>
           <!--<el-button type="primary" icon="delete" v-on:click="removeWordexperience(index)" class="delete"></el-button>-->
           <i class="el-icon-delete" v-on:click="removeItem(index)"></i>
-          <el-form-item label="公司">
-            <el-input v-model="item.company"></el-input>
+          <el-form-item v-for="key in keys" v-bind:key="key.id" v-bind:label="label[key]">
+            <el-input v-model="item[key]"></el-input>
           </el-form-item>
-          <el-form-item label="工作内容">
+          <!--<el-form-item label="工作内容">
             <el-input v-model="item.experience"></el-input>
           </el-form-item>
           <el-form-item label="历时">
             <el-input v-model="item.time"></el-input>
-          </el-form-item>
+          </el-form-item>-->
           <el-button type="primary" v-on:click="addItem()">添加</el-button>
         </div>
       </el-form>
@@ -23,11 +24,16 @@
 
 <script>
 export default {
-  props:['items'],
+  props:['items','label'],
+  computed:{
+    keys(){
+      return Object.keys(this.items[0])
+    }
+  },
   methods:{
     addItem(){
       this.items.push({
-        company:'',experience:'',time:''
+        company:'',experience:'',time:'',xxx:''
       })
     },
     removeItem(index){
