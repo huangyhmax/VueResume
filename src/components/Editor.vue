@@ -24,20 +24,20 @@
         <EditorProfile title="个人信息" v-bind:profile="resume.profile" v-bind:labelPosition="resume.labelPosition"/>
       </li>
       <li v-bind:class="{hover:currentTab===1}">
-        <ArrayEditor v-bind:items="resume.wordexperience" title="工作经历" v-bind:label="{company:'公司',experience:'工作内容',time:'历时',xxx:'待补充'}"/>
+        <EditorContact title="联系方式" v-bind:contact="resume.contact" v-bind:labelPosition="resume.labelPosition"/>
       </li>
       <li v-bind:class="{hover:currentTab===2}">
         <!--<EditorEducation v-bind:items="education"/>-->
-        <ArrayEditor v-bind:items="resume.education" title="教育经历" v-bind:label="{school:'学校',timeline:'时间段',degree:'学位'}"/>
+        <ArrayEditor v-bind:items="resume.education" title="教育经历" v-bind:label="{school:'学校',timeline:'时间段',profession:'专业',degree:'学位'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===3}">
-        <ArrayEditor v-bind:items="resume.project" title="项目经历" v-bind:label="{content:'项目内容'}"/>
+        <ArrayEditor v-bind:items="resume.wordexperience" title="工作经历" v-bind:label="{company:'公司',time:'历时',experience:'工作内容'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===4}">
-        <ArrayEditor v-bind:items="resume.awards" title="获奖经历" v-bind:label="{awardname:'奖项',awardtime:'获奖时间'}"/>
+        <ArrayEditor v-bind:items="resume.project" title="项目经历" v-bind:label="{title:'项目名称',time:'项目时间',content:'项目内容'}"/>
       </li>
       <li v-bind:class="{hover:currentTab===5}">
-        <EditorContact title="联系方式" v-bind:contact="resume.contact" v-bind:labelPosition="resume.labelPosition"/>
+        <ArrayEditor v-bind:items="resume.awards" title="获奖经历" v-bind:label="{awardname:'奖项',awardtime:'获奖时间'}"/>
       </li>
     </ol>
   </div>
@@ -56,7 +56,7 @@ export default {
     return{
       currentTab:0,
       items:[0,1,2,3,4,5],
-      icons:['identity','work','education','project','award','phone'],
+      icons:['identity','phone','education','work','project','award'],
       // labelPosition: 'top',
       // profile: {
       //   name: '',
@@ -99,8 +99,8 @@ export default {
 <style lang="scss">
   #editor{
     /*border:1px solid red;*/
-    min-height:100px;
-    display: flex;
+  min-height:100px;
+  display: flex;
     >nav{
       background-color:#58B7FF;
       width:64px;
@@ -122,35 +122,44 @@ export default {
     }
     >.panes{
         flex: 1;
-      .workblock{
-        position: relative;
-        .el-icon-delete{
-          font-size: 24px;
-          color:#58B7FF;
-          cursor: pointer;
-          position: absolute;
-          top: 0;
-          right: 0;
-          z-index: 1;
-        }
+    h2{
+      letter-spacing: 8px;
+      color: #44536A;
+      margin-bottom: 8px;
+    }
+    hr{
+      margin-bottom: 8px;
+      height: 3px;
+      border: none;
+      background-color: #acb1b9;
+    }
+    .workblock{
+      position: relative;
+      margin-bottom: 24px;
+      .el-icon-delete{
+        font-size: 24px;
+        color:#58B7FF;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 0;
+        z-index: 1;
       }
-      >li{
-        display: none;
-        padding:24px;
-        height: 100%;
-        // width: 100%;
-        overflow: auto;
-        &.hover{
-          display: block;
-        }
-        >h2{
-          letter-spacing:8px;
-        }
-        >.profile{
-          margin:16px 0px;
-        }
+    }
+    >li{
+      display: none;
+      padding:24px;
+      height: 100%;
+      // width: 100%;
+      overflow: auto;
+      &.hover{
+        display: block;
+      }
+      >.profile{
+        margin:16px 0px;
       }
     }
   }
+}
 
 </style>

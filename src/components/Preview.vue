@@ -1,77 +1,120 @@
 <template>
   <div id="preview">
-    <h1>{{resume.profile.name || '请填写名称'}}</h1>
-    <p>{{resume.profile.city || '请填写所在城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
-    <section v-if="filter(resume.wordexperience).length>0">
-      <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
-      <h2>工作经历</h2>
-      <ul>
-        <li v-for="work in filter(resume.wordexperience)" :key="work.id">
-          <div>
-            {{work.company}}
-          </div>
-          <div>
-            {{work.experience}}
-          </div>
-          <div>
-            {{work.time}}
-          </div>
-          <div>
-            {{work.xxx}}
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section v-if="filter(resume.education).length>0">
-      <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
-      <h2>教育经历</h2>
-      <ul>
-        <li v-for="education in filter(resume.education)" :key="education.id">
-          <div>
-            {{education.school}}
-          </div>
-          <div>
-            {{education.timeline}}
-          </div>
-          <div>
-            {{education.degree}}
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section v-if="filter(resume.project).length>0">
-      <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
-      <h2>项目经历</h2>
-      <ul>
-        <li v-for="project in filter(resume.project)" :key="project.id">
-          <div>
-            {{project.content}}
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section v-if="filter(resume.awards).length>0">
-      <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
-      <h2>获奖经历</h2>
-      <ul>
-        <li v-for="awards in filter(resume.awards)" :key="awards.id">
-          <div>
-            {{awards.awardname}}
-          </div>
-          <div>
-            {{awards.awardtime}}
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section v-if="!isEmpty(resume.contact)">
-      <h2>联系方式</h2>
-      <h4>{{resume.contact.phone }}</h4>
-      <h4>{{resume.contact.email }}</h4>
-      <h4>{{resume.contact.webchat}}</h4>
-      <h4>{{resume.contact.github }}</h4>
-      <h4>{{resume.contact.address}}</h4>
-    </section>
+    <div class="layouttop">
+      <div class="basicdata">
+        <p>{{'姓名 / '+(resume.profile.name || '请填写名称')}}</p>
+        <p>{{'所在城市 / '+(resume.profile.city || '请填写所在城市')}}</p>
+        <p>{{'出生日期 / '+(resume.profile.birth || '请填写出生日期')}}</p>
+        <p>{{'应聘岗位 / '+(resume.profile.work || '请填写应聘岗位')}}</p>
+      </div>
+      <div class="photo">
+        <svg class="icon icon-pic" aria-hidden="true">
+            <use xlink:href="#icon-pic"></use>
+        </svg>
+      </div>
+      <div class="contactme">
+        <p>{{'手机号码 / '+(resume.contact.phone || '请填写手机号码')}}</p>
+        <p>{{'邮箱 / '+(resume.contact.email || '请填写邮箱')}}</p>
+        <p>{{'微信 / '+(resume.contact.webchat || '请填写微信')}}</p>
+        <p>{{'QQ / '+(resume.contact.github || '请填写QQ')}}</p>
+        <p>{{'住址 / '+(resume.contact.address || '请填写住址')}}</p>
+      </div>
+      <!--<h2>{{resume.profile.name || '请填写名称'}}</h2>
+      <p>{{resume.profile.city || '请填写所在城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>-->
+    </div>
+    <div class="layoutbottom">
+      <section v-if="filter(resume.education).length>0">
+        <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-h2icon"></use>
+        </svg>
+        <h2>教育经历</h2>
+        <ul>
+          <li v-for="education in filter(resume.education)" :key="education.id">
+            <span>
+              {{education.school}}
+            </span>
+            <span>
+              {{education.timeline}}
+            </span>
+            <span>
+              {{education.profession}}
+            </span>
+            <span>
+              {{education.degree}}
+            </span>
+          </li>
+        </ul>
+      </section>
+      <section v-if="filter(resume.wordexperience).length>0">
+        <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-h2icon"></use>
+        </svg>
+        <h2>工作经历</h2>
+        <ul>
+          <li v-for="work in filter(resume.wordexperience)" :key="work.id">
+            <span>
+              {{work.company}}
+            </span>
+            <span>
+              {{work.time}}
+            </span>
+            <div>
+              {{work.experience}}
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section v-if="filter(resume.project).length>0">
+        <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-h2icon"></use>
+        </svg>
+        <h2>项目经历</h2>
+        <ul>
+          <li v-for="project in filter(resume.project)" :key="project.id">
+            <span>
+              {{project.title}}
+            </span>
+            <span>
+              {{project.time}}
+            </span>
+            <div>
+              {{project.content}}
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section v-if="filter(resume.awards).length>0">
+        <!--{{filter(resume.project)}}  只要input框没填写内容，就不显示-->
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-h2icon"></use>
+        </svg>
+        <h2>获奖经历</h2>
+        <ul>
+          <li v-for="awards in filter(resume.awards)" :key="awards.id">
+            <span>
+              {{awards.awardname}}
+            </span>
+            <span>
+              {{awards.awardtime}}
+            </span>
+          </li>
+        </ul>
+      </section>
+      <!--<section v-if="!isEmpty(resume.contact)">
+        <h2>联系方式</h2>
+        <h4>{{resume.contact.phone }}</h4>
+        <h4>{{resume.contact.email }}</h4>
+        <h4>{{resume.contact.webchat}}</h4>
+        <h4>{{resume.contact.github }}</h4>
+        <h4>{{resume.contact.address}}</h4>
+      </section>-->
+      <div class="bottompic"></div>
+    </div>
+
   </div>
 </template>
 
@@ -97,11 +140,118 @@ export default {
 }
 </script>
 
-
-
-<style>
+<style lang="scss">
+  .icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
   #preview{
     /*border:1px solid blue;*/
-    min-height:100px;
+    //
+    /*background: red;*/
+    // height: 100%;
+    color: #fff;
+    background-image:url(../../src/assets/backgroundpic.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    .layouttop{
+      height: 200px;
+      padding:48px;
+      background-color: transparent;
+      color:#44536A;
+      box-sizing: border-box;
+      display: flex;
+      justify-content:space-between;
+      align-items: center;
+      .basicdata{
+        width: 200px;
+        position: relative;
+        left: 25px;
+        // background-color:blue;
+        p{
+          margin-bottom: 8px;
+          font-size: 14px;
+        }
+      }
+      .photo{
+        width: 150px;
+        height:150px;
+        border-radius:50%;
+        background-color:#B0B0B0;
+        position: relative;
+        .icon-pic{
+          font-size: 96px;
+          font-weight: bold;
+          position: absolute;
+          left: 26px;
+          top: 18px;
+        }
+      }
+      .contactme{
+        width: 200px;
+        position: relative;
+        right: 20px;
+        p{
+          margin-bottom: 8px;
+          font-size: 14px;
+        }
+      }
+    }
+    .layoutbottom{
+      height: 100%;
+      // padding-left:78px;
+      padding: 32px 0px 820px 78px;
+      // background-color: rgba(249,127,124,0.6);
+      background-color: rgba(88,183,255,0.6);
+      position: relative;
+      >section{
+        display: block;
+        // border: 1px solid red;
+        margin-bottom: 8px;
+      }
+      >section>.icon{
+        font-size: 32px;
+          font-weight: bold;
+      }
+      >section>h2{
+        color:#44536A;
+        font-size:20px;
+        margin-bottom:8px;
+        display: inline-block;
+        vertical-align: middle;
+        padding-left: 16px;
+
+      }
+      >section>ul{
+        margin-bottom:8px;
+      }
+      >section>ul>li>span{
+        display: inline-block;
+        // border: 1px solid red;
+        margin-right: 16px;
+        font-size: 18px;
+        margin-bottom:4px;
+      }
+      >section>ul>li>div{
+        // border: 1px solid red;
+        font-size: 14px;
+        line-height: 1.5;
+        margin:4px 0px;
+        word-wrap: break-word;
+        // position: relative;
+
+      }
+    }
+    .bottompic{
+      // position: absolute;
+      // bottom: 0;
+      // background-color: red;
+      // background-image:url(../../src/assets/bottompic.png);
+      // background-repeat:no-repeat;
+      // background-size:cover;
+      // height: 80px;
+    }
   }
 </style>

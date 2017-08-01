@@ -48,3 +48,11 @@ export default {
 }
 </script>
 
+<stylelang="scss">
+  /*h2{
+    letter-spacing: 8px;
+    color: #44536A;
+    margin-bottom: 8px;
+  }*/
+</style>
+

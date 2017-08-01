@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>{{title}}</h2>
+    <hr>
     <el-form :label-position="labelPosition" label-width="80px" :model="contact" class="profile">
       <el-form-item label="手机号码">
         <el-input v-model="contact.phone"></el-input>
