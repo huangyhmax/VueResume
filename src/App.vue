@@ -92,7 +92,7 @@ html,body,#app{height:100%;overflow: hidden}
   position: relative;
   z-index:1;
 }
-main{
+#app main{
   display: flex;
   height: 100%;
   background-color:#F9FAFC;
