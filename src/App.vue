@@ -69,7 +69,7 @@ html,body,#app{height:100%;overflow: hidden}
   }
   #preview{
   max-width:800px;
-  margin: 32px auto 0px auto;
+  margin: 32px auto 0px auto !important;
   }
   #exit{
     display: inline-block;
