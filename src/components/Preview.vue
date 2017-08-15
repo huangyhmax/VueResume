@@ -16,7 +16,7 @@
         <p>{{'手机号码 / '+(resume.contact.phone || '请填写手机号码')}}</p>
         <p>{{'邮箱 / '+(resume.contact.email || '请填写邮箱')}}</p>
         <p>{{'微信 / '+(resume.contact.webchat || '请填写微信')}}</p>
-        <p>{{'QQ / '+(resume.contact.github || '请填写QQ')}}</p>
+        <p>{{'github / '+(resume.contact.github || '请填写github')}}</p>
         <p>{{'住址 / '+(resume.contact.address || '请填写住址')}}</p>
       </div>
       <!--<h2>{{resume.profile.name || '请填写名称'}}</h2>
